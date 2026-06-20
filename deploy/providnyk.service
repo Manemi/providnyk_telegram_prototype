@@ -1,0 +1,26 @@
+[Unit]
+Description=Providnyk Telegram game bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=providnyk
+Group=providnyk
+WorkingDirectory=/opt/providnyk
+EnvironmentFile=/etc/providnyk/providnyk.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/providnyk/.venv/bin/python /opt/providnyk/bot.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/providnyk
+
+[Install]
+WantedBy=multi-user.target
+

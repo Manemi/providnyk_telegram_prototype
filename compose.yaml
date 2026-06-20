@@ -1,0 +1,17 @@
+services:
+  bot:
+    build:
+      context: .
+    container_name: providnyk-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      GAME_DB_PATH: /app/data/providnyk.sqlite3
+    volumes:
+      - providnyk_data:/app/data
+    stop_grace_period: 30s
+
+volumes:
+  providnyk_data:
+
